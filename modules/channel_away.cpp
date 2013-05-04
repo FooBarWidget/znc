@@ -30,4 +30,4 @@ template<> void TModInfo<CChannelAway>(CModInfo& Info) {
 	Info.SetHasArgs(false);
 }
 
-NETWORKMODULEDEFS(CChannelAway, "When away, autoreply to channels in which your nick is mentioned.")
+USERMODULEDEFS(CChannelAway, "When away, autoreply to channels in which your nick is mentioned.")
