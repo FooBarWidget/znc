@@ -38,7 +38,7 @@ public:
 	}
 
 	void Welcome(const CString &sNick) {
-		PutIRC("PRIVMSG " + sNick + " :Hi " + sNick +
+		PutIRC("NOTICE " + sNick + " :Hi " + sNick +
 			", welcome to #passenger. Please feel free to hang around and chat with people. "
 			"The authors (e.g. FooBarWidget) are not always watching the channel and are in "
 			"timezone Europe/Amsterdam. If you want to nudge him, begin your message with "
