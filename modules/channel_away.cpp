@@ -14,13 +14,22 @@ public:
 	virtual EModRet OnChanMsg(CNick& Nick, CChan& Channel, CString& sMessage) {
 		CString First = sMessage.Token(0).MakeLower();
 		CString MyNick = m_pNetwork->GetIRCNick().GetNick().AsLower();
-		if (m_pNetwork->IsIRCAway() && (First == MyNick || First == MyNick + ":"
-		 || First == CString("@") + MyNick || First == CString("@") + MyNick + ":")) {
+		if (m_pNetwork->IsIRCAway() && TalkingToMe(First, MyNick)) {
 			PutIRC("PRIVMSG " + Channel.GetName() + " :" + Nick.GetNick() +
 				": I am currently away. My timezone is Europe/Amsterdam. " +
 				"Please wait until I'm back or check www.phusionpassenger.com/support.");
 		}
 		return CONTINUE;
+	}
+
+private:
+	bool TalkingToMe(const CString &First, const CString &MyNick) const {
+		return First == MyNick
+			|| First == MyNick + ":"
+			|| First == MyNick + ","
+			|| First == CString("@") + MyNick
+			|| First == CString("@") + MyNick + ":"
+			|| First == CString("@") + MyNick + ",";
 	}
 };
 
